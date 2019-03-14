@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 // Router
 const systemInfo = require('./routes/systeminfo');
+const redirectRoute = require('./routes/redirect');
 
 app.listen(PORT, () => {
     console.log(`Server listening in port: ${PORT}`);
@@ -18,3 +19,4 @@ app.get('/about', (req, res) => {
 });
 
 app.use('/systemInfo', systemInfo);
+app.use('/redirectExample', redirectRoute);
