@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+// Router
+const systemInfo = require('./routes/systeminfo');
 
 app.listen(PORT, () => {
     console.log(`Server listening in port: ${PORT}`);
@@ -14,3 +16,5 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.send('<h1>This is about page</h1>');
 });
+
+app.use('/systemInfo', systemInfo);
