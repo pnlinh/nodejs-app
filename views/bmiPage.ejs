@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body>
+<div class="container">
+    <main>
+        <h3>Enter your BMI Information</h3>
+    </main>
+
+    <form method="get">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="height" class="col-sm-2 col-form-label">Height</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="height" placeholder="Enter your height">
+            </div>
+            <label class="col-sm-2 col-form-label">cm</label>
+        </div>
+
+        <div class="form-group row">
+            <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+            <div class="col-sm-4">
+                <input type="number" class="form-control" id="weight" placeholder="Enter your weight">
+            </div>
+            <label class="col-sm-2 col-form-label">kg</label>
+        </div>
+
+        <div class="form-group row">
+            <label for="bmi-value" class="col-sm-2 col-form-label">Result</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="bmi-value" placeholder="Your BMI result">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="btn-calculate-bmi">Calculte BMI</button>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="/bmiPage.js"></script>
+</body>
+</html>

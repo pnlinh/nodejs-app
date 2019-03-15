@@ -48,4 +48,8 @@ router.get('/bmi', async (req, res) => {
     }
 });
 
+router.get('/bmiPage', async (req, res) => {
+    res.render('bmiPage');
+});
+
 module.exports = router;

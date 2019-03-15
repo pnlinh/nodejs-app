@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+// Set view engine
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'javascripts')));
+
 // Router
 const systemInfo = require('./routes/systeminfo');
 const redirectRoute = require('./routes/redirect');
