@@ -6,6 +6,7 @@ const PORT = 3000;
 const systemInfo = require('./routes/systeminfo');
 const redirectRoute = require('./routes/redirect');
 const books = require('./routes/books');
+const files = require('./routes/files');
 
 app.listen(PORT, () => {
     console.log(`Server listening in port: ${PORT}`);
@@ -23,6 +24,7 @@ app.get('/about', (req, res) => {
 app.use('/systemInfo', systemInfo);
 app.use('/redirectExample', redirectRoute);
 app.use('/books', books);
+app.use('/files', files);
 
 app.use((req, res) => {
     const http404File = path.join(__dirname)+'/404.html';
