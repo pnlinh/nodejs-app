@@ -48,4 +48,51 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Upload files
+router.post('/uploads', async (req, res) => {
+    try {
+        if (!req.files) {
+            return res.json({
+                status: 'fail',
+                msg: 'Please select files to upload'
+            });
+        }
+
+        const keys = Object.keys(req.files);
+        if (0 === keys.length) {
+            return res.json({
+                status: 'fail',
+                msg: 'Please select files to upload'
+            });
+        }
+
+        keys.forEach(async (key) => {
+            const fileName = `${Math.random().toString(32)}`;
+            const fileObj = await req.files[key];
+            const fileExt = fileObj.name.split('.').pop();
+            const destination = `${path.join(__dirname, '..')}/uploads/${fileName}.${fileExt}`;
+            let error = await fileObj.mv(destination);
+
+            if (error) {
+                res.json({
+                    status: 'fail',
+                    msg: `Error when upload file: ${error}`
+                });
+            }
+
+            if (key === keys[keys.length - 1]) {
+                return res.json({
+                    status: 'success',
+                    msg: `Upload files successfully`
+                });
+            }
+        });
+    } catch (e) {
+        res.json({
+            status: 'fail',
+            msg: `Error when upload file: ${e}`
+        });
+    }
+});
+
 module.exports = router;
