@@ -94,7 +94,7 @@ router.put('/', async (req, res) => {
     }
 });
 
-router.delete('/',  (req, res) => {
+router.delete('/', async (req, res) => {
     let {id} = req.body;
     id = parseInt(id);
 
