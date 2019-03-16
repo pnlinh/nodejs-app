@@ -48,6 +48,24 @@ router.get('/', async (req, res) => {
     }
 });
 
+const handleValidateFileExtension = async (files) => {
+    const extentionAllowed = ['png', 'jpg', 'jpeg', 'gif'];
+    const keys = await Object.keys(files);
+
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const fileObj = files[key];
+        const fileExt = fileObj.name.split('.').pop();
+        const fileExceed = fileObj.truncated === true;
+
+        if (extentionAllowed.indexOf(fileExt.toLocaleLowerCase()) < 0 || fileExceed) {
+            return false;
+        }
+    }
+
+    return true;
+};
+
 // Upload files
 router.post('/uploads', async (req, res) => {
     try {
@@ -63,6 +81,14 @@ router.post('/uploads', async (req, res) => {
             return res.json({
                 status: 'fail',
                 msg: 'Please select files to upload'
+            });
+        }
+
+        const validateExtension = await handleValidateFileExtension(req.files);
+        if (!validateExtension) {
+            return res.json({
+                status: 'fail',
+                msg: `You can only upload \'png\', \'jpg\', \'jpeg\', \'gif\' files or file size > 0.5MB`
             });
         }
 
@@ -83,7 +109,8 @@ router.post('/uploads', async (req, res) => {
             if (key === keys[keys.length - 1]) {
                 return res.json({
                     status: 'success',
-                    msg: `Upload files successfully`
+                    msg: `Upload files successfully`,
+                    numberOfFiles: keys.length
                 });
             }
         });

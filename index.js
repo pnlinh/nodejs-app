@@ -5,7 +5,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const fileUpload = require('express-fileupload');
 app.use(fileUpload({
-    limits: {fileSize: 105 * 1024 * 1024}
+    limits: {fileSize: 105 * 1024 * 1024} // Limit 150mb
 }));
 
 const path = require('path');
